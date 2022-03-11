@@ -9,8 +9,6 @@ from .models import Post
 
 # Класс Paginator для обработки данных, разбитых на страницы,
 # то есть данных, разделенных на несколько страниц с помощью ссылок «Предыдущий / Следующий»
-
-"""
 def post_list(request):
     object_list = Post.published.all()
     
@@ -31,7 +29,7 @@ def post_list(request):
                   'blog/post/list.html',
                   {'page': page,
                    'posts': posts})
-"""
+
 
 
 def post_detail(request, year, month, day, post):
