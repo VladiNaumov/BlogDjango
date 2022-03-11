@@ -6,10 +6,18 @@ from .models import Post
 """  views.py – вся логика приложения описывается здесь. 
 Каждый обработчик получает HTTP-запрос, обрабатывает его и возвращает ответ. """
 
+
+# Класс Paginator для обработки данных, разбитых на страницы,
+# то есть данных, разделенных на несколько страниц с помощью ссылок «Предыдущий / Следующий»
+
+"""
 def post_list(request):
     object_list = Post.published.all()
+    
     paginator = Paginator(object_list, 3) # 3 posts in each page
     page = request.GET.get('page')
+
+    # обработки исключений
     try:
         posts = paginator.page(page)
     except PageNotAnInteger:
@@ -18,10 +26,13 @@ def post_list(request):
     except EmptyPage:
         # If page is out of range deliver last page of results
         posts = paginator.page(paginator.num_pages)
+
     return render(request,
                   'blog/post/list.html',
                   {'page': page,
                    'posts': posts})
+"""
+
 
 def post_detail(request, year, month, day, post):
     post = get_object_or_404(Post, slug=post,
