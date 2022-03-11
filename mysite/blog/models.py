@@ -3,7 +3,12 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
 
-""" models.py  –  модели  данных  приложения. 
+""" models.py – модели  данных  приложения.
+ 
+class models — это объект определённого свойства: он хранится в базе данных. 
+Это то место, где ты будешь хранить информацию о своих пользователях, записях в блоге и т.д. 
+Мы будем использовать базу данных SQLite для хранения информации. 
+
 любом  Django-приложении должен быть этот файл, но он может оставаться пустым; """
 
 # Our custom manager.
@@ -12,13 +17,14 @@ class PublishedManager(models.Manager):
         return super(PublishedManager, self).get_queryset().filter(status='published')
 
 
-""" Обработчик (объект Manager ) - это интерфейс, через который операции запросов к базе данных становятся доступными для моделей Django.  """
+""" Обработчик (объект Manager) - это интерфейс, через который операции запросов к базе данных становятся доступными для моделей Django."""
 class Post(models.Model):
     STATUS_CHOICES = (
         ('draft', 'Draft'),
         ('published', 'Published'),
     )
 
+    """ такая таблица будет создана в Bd SQL  """
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250, unique_for_date='publish')
     author = models.ForeignKey(User,on_delete=models.CASCADE, related_name='blog_posts')
@@ -50,5 +56,3 @@ class Post(models.Model):
                              self.publish.month,
                              self.publish.day,
                              self.slug])
-
-        
