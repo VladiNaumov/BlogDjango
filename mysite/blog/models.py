@@ -9,7 +9,13 @@ class models — это объект определённого свойства
 Это то место, где ты будешь хранить информацию о своих пользователях, записях в блоге и т.д. 
 Мы будем использовать базу данных SQLite для хранения информации. 
 
-любом  Django-приложении должен быть этот файл, но он может оставаться пустым; """
+любом  Django-приложении должен быть этот файл, но он может оставаться пустым; 
+
+python manage.py makemigrations blog
+python manage.py migrate
+
+
+"""
 
 # Our custom manager.
 class PublishedManager(models.Manager):
@@ -74,3 +80,42 @@ class Comment(models.Model):
 
     def __str__(self):
         return 'Comment by {} on {}'.format(self.name, self.post)
+
+""" DEMO models """
+class Author(models.Model):
+    """Model representing an author."""
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    date_of_birth = models.DateField(null=True, blank=True)
+    date_of_death = models.DateField('died', null=True, blank=True)
+
+    class Meta:
+        ordering = ['last_name', 'first_name']
+
+    def get_absolute_url(self):
+        """Returns the url to access a particular author instance."""
+        return reverse('author-detail', args=[str(self.id)])
+
+    def __str__(self):
+        """String for representing the Model object."""
+        return '{0}, {1}'.format(self.last_name, self.first_name)
+
+""" DEMO models """
+class New(models.Model):
+    """Model representing an author."""
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    date_of_birth = models.DateField(null=True, blank=True)
+    date_of_death = models.DateField('died', null=True, blank=True)
+
+    class Meta:
+        ordering = ['last_name', 'first_name']
+
+    def get_absolute_url(self):
+        """Returns the url to access a particular author instance."""
+        return reverse('author-detail', args=[str(self.id)])
+
+    def __str__(self):
+        """String for representing the Model object."""
+        return '{0}, {1}'.format(self.last_name, self.first_name)
+
