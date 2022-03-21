@@ -77,6 +77,6 @@ def post_share(request, post_id):
                                                     'sent': sent})
 
 
-def index(request):
+def author(request):
     return HttpResponse("<h1> DEMO ARTICLE<h1>")
 
