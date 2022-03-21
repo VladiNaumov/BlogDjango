@@ -19,8 +19,11 @@ Including another URLconf (Включение другой конфигурац�
 """
 from django.contrib import admin
 from django.urls import path, include
+from blog.views import index
 
 urlpatterns = [
+    #path('author/', include('blog.urls', namespace='blog')),
+    path('author/', index),
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls', namespace='blog'))
 ]

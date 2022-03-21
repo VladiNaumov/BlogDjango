@@ -4,8 +4,20 @@ from .models import Post, Comment, Author, New
 """ admin.py – здесь мы регистрируем модели для добавления их в систему администрирования Django 
 (использование сайта администрирования Django не является обязательным); """
 
-admin.site.register(Author)
+# admin.site.register(Author)
 admin.site.register(New)
+
+"""
+@admin.register(New)
+class NewAdmin(admin.ModelAdmin):
+    list_display = ('last_name', 'first_name')
+    
+"""
+
+@admin.register(Author)
+class NewAdmin(admin.ModelAdmin):
+    list_display = ('last_name', 'first_name','date_of_birth', 'date_of_death')
+
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):

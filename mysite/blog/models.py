@@ -81,6 +81,8 @@ class Comment(models.Model):
     def __str__(self):
         return 'Comment by {} on {}'.format(self.name, self.post)
 
+
+
 """ DEMO models """
 class Author(models.Model):
     """Model representing an author."""
@@ -99,6 +101,7 @@ class Author(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return '{0}, {1}'.format(self.last_name, self.first_name)
+
 
 """ DEMO models """
 class New(models.Model):
